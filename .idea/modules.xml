@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JpaDemo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/JpaDemo.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RestApiDemo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/RestApiDemo.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jdbcDemo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/jdbcDemo.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/myBatisDemo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/myBatisDemo.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/springboot.iml" filepath="$PROJECT_DIR$/.idea/springboot.iml" />
+    </modules>
+  </component>
+</project>

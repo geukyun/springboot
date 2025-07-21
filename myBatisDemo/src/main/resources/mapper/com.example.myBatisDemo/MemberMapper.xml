@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.example.myBatisDemo.mapper.MemberMapper">
+
+    <select id="selectAllCount">
+        SELECT COUNT(*) FROM member
+    </select>
+
+    <select id="selectAll">
+        SELECT * FROM member
+    </select>
+
+    <select id="selectById" parameterType="long" resultType="com.example.myBatisDemo.mapper.Member">
+        SELECT * FROM member WHERE id = #{id}
+    </select>
+
+    <select id="selectByEmail">
+        SELECT * FROM member WHERE email=#{email}
+    </select>
+    <select id="selectAllOrderByAgeAsc">
+        SELECT * FROM member ORDER BY age ASC
+    </select>
+    <select id="selectAllOrderBy">
+        SELECT * FROM member ORDER BY ${order} ${dir}
+    </select>
+</mapper>
