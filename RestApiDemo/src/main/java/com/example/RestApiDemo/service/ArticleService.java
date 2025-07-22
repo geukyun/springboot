@@ -1,6 +1,7 @@
 package com.example.RestApiDemo.service;
 
 import com.example.RestApiDemo.Member;
+import com.example.RestApiDemo.dto.ArticleRequest;
 import com.example.RestApiDemo.dto.ArticleResponse;
 import com.example.RestApiDemo.exception.NotFoundException;
 import com.example.RestApiDemo.model.Article;
@@ -43,5 +44,16 @@ public class ArticleService {
                 .stream()
                 .map(this::mapToArticleResponse)
                 .toList();
+    }
+
+    public ArticleResponse create(Long memberId, ArticleRequest articleRequest){
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(NotFoundException::new);
+        Article article = Article.builder()
+                .title(articleRequest.getTitle())
+                .description(articleRequest.getDescription())
+                .member(member).build();
+        articleRepository.save(article);
+        return mapToArticleResponse(article);
     }
 }

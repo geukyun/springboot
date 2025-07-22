@@ -1,15 +1,15 @@
 package com.example.RestApiDemo.controller;
 
-import com.example.RestApiDemo.Member;
+import com.example.RestApiDemo.dto.ArticleRequest;
+import com.example.RestApiDemo.dto.ArticleResponse;
 import com.example.RestApiDemo.dto.MemberRequest;
 import com.example.RestApiDemo.dto.MemberResponse;
-import com.example.RestApiDemo.repository.MemberRepository;
+import com.example.RestApiDemo.service.ArticleService;
 import com.example.RestApiDemo.service.MemberService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +22,14 @@ import java.util.List;
 public class MemberController {
 
     private final MemberService memberService;
+    private final ArticleService articleService;
+
+    @PostMapping("/{id}/articles")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ArticleResponse postArticle(@PathVariable("id") Long id, @RequestBody ArticleRequest articleRequest){
+        System.out.println(id);
+        return articleService.create(id, articleRequest);
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
