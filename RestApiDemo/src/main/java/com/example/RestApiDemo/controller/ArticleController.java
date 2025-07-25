@@ -1,11 +1,10 @@
 package com.example.RestApiDemo.controller;
 
+import com.example.RestApiDemo.dto.ArticleRequest;
 import com.example.RestApiDemo.dto.ArticleResponse;
 import com.example.RestApiDemo.service.ArticleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +23,22 @@ public class ArticleController
         }else {
             return articleService.findByMemberId(memberId);
         }
+    }
+
+    @GetMapping("/{id}")
+    public ArticleResponse get(@PathVariable("id") Long id){
+        return articleService.findById(id);
+    }
+
+    @PutMapping("/{id}")
+    public ArticleResponse put(@PathVariable("id") Long id,
+                               @RequestBody ArticleRequest articleRequest){
+        return articleService.update(id, articleRequest);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Long id){
+        articleService.delete(id);
     }
 
 }

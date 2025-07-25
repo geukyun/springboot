@@ -71,4 +71,10 @@ public class MemberController {
                     .getRequestDispatcher("/api/articles?memberId="+id)
                     .forward(request, response);
     }
+
+//    @GetMapping("/{id}/articles")
+//    public void getArticle(@PathVariable("id") Long id, HttpServletResponse response) throws ServletException, IOException{
+//        response.sendRedirect("/api/articles?memberId="+id);
+//    }
+
 }
