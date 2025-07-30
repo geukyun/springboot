@@ -72,9 +72,10 @@ public class MemberController {
                     .forward(request, response);
     }
 
-//    @GetMapping("/{id}/articles")
-//    public void getArticle(@PathVariable("id") Long id, HttpServletResponse response) throws ServletException, IOException{
-//        response.sendRedirect("/api/articles?memberId="+id);
-//    }
+    @PostMapping("/postBatch")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<MemberResponse> postBatch(@RequestBody List<MemberRequest> memberRequests){
+        return memberService.createBatch(memberRequests);
+    }
 
 }

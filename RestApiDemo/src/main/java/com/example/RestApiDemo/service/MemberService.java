@@ -6,10 +6,9 @@ import com.example.RestApiDemo.dto.MemberResponse;
 import com.example.RestApiDemo.exception.NotFoundException;
 import com.example.RestApiDemo.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,7 +21,7 @@ public class MemberService {
                 .name(memberRequest.getName())
                 .email(memberRequest.getEmail())
                 .age(memberRequest.getAge())
-                .enalbed(true).build();
+                .enabled(true).build();
         memberRepository.save(member);
         return mapToMemberResponse(member);
     }
@@ -80,5 +79,18 @@ public class MemberService {
     public void deleteById(Long id){
         Member member = memberRepository.findById(id).orElseThrow(NotFoundException::new);
         memberRepository.delete(member);
+    }
+
+    @Transactional
+    public List<MemberResponse> createBatch(List<MemberRequest> memberRequests){
+        List<MemberResponse> memberResponses = memberRequests.stream().map(this::create).toList();
+        try {
+
+        }
+        catch (Exception e) {
+            System.out.println("rollback");
+            throw new RuntimeException(e);
+        }
+        return memberResponses;
     }
 }
