@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -78,4 +79,9 @@ public class MemberController {
         return memberService.createBatch(memberRequests);
     }
 
+    @GetMapping("/member/list")
+    public String getMembers(Model model){
+        model.addAttribute("members", memberService.findAll());
+        return "member/list";
+    }
 }
